@@ -8,14 +8,8 @@ var randomText = require("./random.txt");
 // to write to text files
 var fs = require("fs");
 
-// Dependency for inquirer npm package
-var inquirer = require("inquirer");
-
 // Include the axios package
 var axios = require("axios");
-
-// BandsInTown
-var bandsintown = require('bandsintown')("bootcamp");
 
 // spotify package
 var Spotify = require('node-spotify-api');
@@ -25,11 +19,6 @@ var keys = require("./keys.js");
 
 //you should then be able to access like so
 spotify = new Spotify(keys.spotify);
-
-
-
-
-//Make it so liri.js can take in one of the following commands: concert-this, spotify-this-song, movie-this, do-what-it-says
 
 // Grabbing command line arguments for type and target
 // 'concert-this'/'spotify-this-song'/'movie-this'/'do-what-it-says'
@@ -46,6 +35,7 @@ if (type == "spotify-this-song" || type == "do-what-it-says") {
             if (err) {
                 return console.log('Error occurred: ' + err);
             }
+            // Writing into a txt file to find values
             fs.appendFileSync("written.txt", (JSON.stringify(data, null, 2)));
 
             console.log("Artist or Band: ");
@@ -66,6 +56,7 @@ if (type == "spotify-this-song" || type == "do-what-it-says") {
             if (err) {
                 return console.log('Error occurred: ' + err);
             }
+            // Writing into a txt file to find values
             fs.appendFileSync("written.txt", (JSON.stringify(data, null, 2)));
 
             console.log("Artist or Band: ");
@@ -85,6 +76,7 @@ if (type == "spotify-this-song" || type == "do-what-it-says") {
             if (err) {
                 return console.log('Error occurred: ' + err);
             }
+            // Writing into a txt file to find values
             fs.appendFileSync("written.txt", (JSON.stringify(data, null, 2)));
 
             console.log("Artist or Band: ");
@@ -102,7 +94,7 @@ if (type == "spotify-this-song" || type == "do-what-it-says") {
 }
 
 if (type == "movie-this") {
-    if (target = "") {
+    if (target == "") {
         Console.log("Oh no! Looks like you forgot to type in a movie title!");
     }
     // Then run a request with axios to the OMDB API with the movie specified
